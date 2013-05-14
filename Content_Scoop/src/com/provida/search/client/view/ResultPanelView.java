@@ -42,7 +42,8 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 	int textRow = 0;
 	int imageRow = 0;
 	public ResultPanelView() {
-		initWidget( uiBinder.createAndBindUi( this ) );		
+		initWidget( uiBinder.createAndBindUi( this ) );
+		mainTab.selectTab(0);
 	}
 
 	
@@ -67,7 +68,6 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 				imageResults.setWidget(imageRow, 2, new Button("Save Image"));
 			}
 		}
-		mainTab.selectTab(0);
 		addHandlers();
 	}		
 	private void addHandlers() {
