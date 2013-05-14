@@ -36,13 +36,20 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 	    imageSearch.clearFileType();
 	    imageSearch.clearImageSize();
 
-	   // imageSearch.setQueryAddition("as_filetype="+imageType);
 	    imageSearch.setResultSetSize(ResultSetSize.LARGE);
+	    String searchParam = "";
 	    if(imageType!=null && !"".equals(imageType)){
-	    	imageSearch.setFileType(FileTypeValue.valueOf(imageType));
+	    	if(!imageType.equalsIgnoreCase("all")) {
+	    		searchParam = "filetype:"+imageType.toLowerCase();
+	    	}
 	    }
 	    if(imageSize!=null && !"".equals(imageSize)){
-	    	imageSearch.setImageSize(ImageSizeValue.valueOf(imageSize));
+	    	if(searchParam.isEmpty()) {
+	    		searchParam = "imagesize:" + imageSize;
+	    	}	    	
+	    }
+	    if(!searchParam.isEmpty()) {
+	    	imageSearch.setQueryAddition(searchParam);
 	    }
 	    options.add(imageSearch);
 	    final SearchControl control = new SearchControl(options);
