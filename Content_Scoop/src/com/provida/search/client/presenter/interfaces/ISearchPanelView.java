@@ -6,7 +6,7 @@ public interface ISearchPanelView extends IsWidget {
 
 	public interface ISearchPanelPresenter {
 
-		void startSearch(String term,String imageType,String imageSize);
+		void startSearch(String term,String imageType,String imageSize, int words);
 
 	}
 }

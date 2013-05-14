@@ -48,16 +48,22 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 
 	
 	@Override
-	public void setResults(JsArray<? extends Result> results) {
+	public void setResults(JsArray<? extends Result> results,int words) {
 		for (int i = 0; i < results.length(); i++) {
 			if (results.get(i).getResultClass().equals(
 					ResultClass.WEB_SEARCH_RESULT)) {
 				textRow++;
 				WebResult result = (WebResult) results.get(i);
 				textResults.setText(textRow, 0, "" + textRow);
-				HTML htmlText = new HTML();
-				htmlText.setHTML(SafeHtmlUtils.fromTrustedString(result.getHtml().toString()));
-				textResults.setHTML(textRow, 1,"<a href=\""+result.getUrl()+ "\">"+result.getTitleNoFormatting()+"</a><br>"+result.getContent());
+				String content = result.getContent();
+				int p=0;
+				int spaceIdx=0;
+				while(p<words){
+					spaceIdx = content.indexOf(" ",spaceIdx+1);
+					p++;
+				}
+				content = content.substring(0, spaceIdx);
+				textResults.setHTML(textRow, 1,"<a href=\""+result.getUrl()+ "\">"+result.getTitleNoFormatting()+"</a><br>"+content);
 				textResults.setWidget(textRow, 2, new Button("Save"));
 			}else if(results.get(i).getResultClass().equals(
 					ResultClass.IMAGE_SEARCH_RESULT)){
