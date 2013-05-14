@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface IResultPanelView extends IsWidget {
 
 	public interface IResultPanelPresenter {
-		public void onSetResults(JsArray<? extends Result> results);
+		public void onSetResults(JsArray<? extends Result> results,int words);
 
 		public void storeText(String textToStore);
 
@@ -15,7 +15,7 @@ public interface IResultPanelView extends IsWidget {
 
 	}
 
-	void setResults(JsArray<? extends Result> results);
+	void setResults(JsArray<? extends Result> results,int words);
 
 	void clearAll();
 

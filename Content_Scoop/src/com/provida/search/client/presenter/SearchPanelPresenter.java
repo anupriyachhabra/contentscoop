@@ -22,7 +22,7 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 	
 	JsArray<? extends Result> results;
 	@Override
-	public void startSearch(String term,String imageType,String imageSize) {
+	public void startSearch(String term,String imageType,String imageSize,final int words) {
 		results = null;
 		//System.out.println("User searched for " +term+"  "+imageSize+"  "+imageType);
 
@@ -50,7 +50,7 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 
 	    	public void onSearchResults(SearchResultsEvent event) {
 	    	    results = event.getResults();
-	    	    eventBus.setResults(results);
+	    	    eventBus.setResults(results,words);
 	    	}
 	    });
         control.execute(term);

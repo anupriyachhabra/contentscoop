@@ -20,9 +20,9 @@ import com.provida.search.client.view.ResultPanelView;
 public class ResultPanelPresenter extends BasePresenter<IResultPanelView, ContentScoopEventBus> implements IResultPanelPresenter {
 
 	
-	public void onSetResults(JsArray<? extends Result> results){
+	public void onSetResults(JsArray<? extends Result> results,int words){
 		view.clearAll();
-		view.setResults(results);
+		view.setResults(results,words);
 		
 	}
 
