@@ -22,7 +22,7 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 	}
 
 	@UiField
-	TextBox term;
+	TextBox term,numberOfWords;
 	
 	@UiField
 	Button searchButton;
@@ -46,8 +46,12 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 	public void onClickSearchButton(ClickEvent e){
 		String imageTypeString = imageType.getValue(imageType.getSelectedIndex());
 		String imageSizeString = imageSize.getValue(imageSize.getSelectedIndex());
+		String words = numberOfWords.getValue();
+		if(words== null || "".equals(words)){
+			words="0";
+		}
 		System.out.println("User searched for " +term.getValue()+"  "+imageSizeString+"  "+imageTypeString);
-		presenter.startSearch(term.getValue(),imageTypeString,imageSizeString);
+		presenter.startSearch(term.getValue(),imageTypeString,imageSizeString,Integer.parseInt(words));
 	}
 	
 

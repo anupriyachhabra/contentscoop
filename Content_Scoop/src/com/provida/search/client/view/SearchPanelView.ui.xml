@@ -13,6 +13,9 @@
 		<g:HorizontalPanel>
 		<g:HTMLPanel>Image Size&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageSize" name = "Image Size"></g:ListBox>
 		</g:HorizontalPanel>
+		<g:HorizontalPanel>
+		<g:HTMLPanel>Number of words&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="numberOfWords"></g:TextBox>
+		</g:HorizontalPanel>
 	 </g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 
