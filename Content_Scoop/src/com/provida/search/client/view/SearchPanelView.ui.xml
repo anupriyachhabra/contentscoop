@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HTMLPanel>
+	   <g:VerticalPanel styleName="search">
+		<g:HorizontalPanel>
+		<g:TextBox ui:field="term"></g:TextBox>
+		<g:Button ui:field="searchButton">Search</g:Button>
+		</g:HorizontalPanel>
+		<g:HorizontalPanel>
+		<g:HTMLPanel>Image Type&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageType" name = "Image Type"></g:ListBox>
+		</g:HorizontalPanel>
+		<g:HorizontalPanel>
+		<g:HTMLPanel>Image Size&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageSize" name = "Image Size"></g:ListBox>
+		</g:HorizontalPanel>
+	 </g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

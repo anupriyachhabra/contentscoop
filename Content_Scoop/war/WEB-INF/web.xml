@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+         
+         
+<listener>
+    <listener-class>com.provida.search.server.DataBaseSetup</listener-class>
+</listener>
+ 
+  
+ <!-- Servlets -->
+ <servlet>
+    <servlet-name>uploadImageServiceImpl</servlet-name>
+    <servlet-class>com.provida.search.server.UploadImageServiceImpl</servlet-class>
+  </servlet>
+  
+   <servlet>
+    <servlet-name>storeTextServiceImpl</servlet-name>
+    <servlet-class>com.provida.search.server.StoreTextServiceImpl</servlet-class>
+  </servlet>
+
+ <servlet-mapping>
+    <servlet-name>storeTextServiceImpl</servlet-name>
+    <url-pattern>/content_scoop/saveText</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>uploadImageServiceImpl</servlet-name>
+    <url-pattern>/content_scoop/saveImage</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Content_Scoop.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>

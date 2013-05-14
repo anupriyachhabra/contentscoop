@@ -1,0 +1,2 @@
+serviceClass: com.provida.search.client.StoreTextService
+path: 0F341423868F39EED858D120E463DF99.gwt.rpc

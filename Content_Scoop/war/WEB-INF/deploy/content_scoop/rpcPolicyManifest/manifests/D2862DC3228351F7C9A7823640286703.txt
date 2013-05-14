@@ -1,0 +1,2 @@
+serviceClass: com.provida.search.client.UploadImageService
+path: 8B7D51940315CCAFD7F26312C5C6AA08.gwt.rpc
