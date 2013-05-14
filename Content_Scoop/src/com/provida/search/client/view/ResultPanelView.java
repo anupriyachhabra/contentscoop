@@ -56,13 +56,15 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 				WebResult result = (WebResult) results.get(i);
 				textResults.setText(textRow, 0, "" + textRow);
 				String content = result.getContent();
-				int p=0;
-				int spaceIdx=0;
-				while(p<words){
-					spaceIdx = content.indexOf(" ",spaceIdx+1);
-					p++;
+				if(words>0){
+					int p=0;
+					int spaceIdx=0;
+					while(p<words){
+						spaceIdx = content.indexOf(" ",spaceIdx+1);
+						p++;
+					}
+					content = content.substring(0, spaceIdx);
 				}
-				content = content.substring(0, spaceIdx);
 				textResults.setHTML(textRow, 1,"<a href=\""+result.getUrl()+ "\">"+result.getTitleNoFormatting()+"</a><br>"+content);
 				textResults.setWidget(textRow, 2, new Button("Save"));
 			}else if(results.get(i).getResultClass().equals(
