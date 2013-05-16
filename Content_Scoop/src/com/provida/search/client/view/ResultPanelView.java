@@ -68,7 +68,7 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 					}
 					content = content.substring(0, spaceIdx);
 				}
-				textResults.setHTML(textRow, 1,"<a href=\""+result.getUrl()+ "\">"+result.getTitleNoFormatting()+"</a><br>"+content);
+				textResults.setHTML(textRow, 1,content);
 				textResults.setWidget(textRow, 2, new Button("Save"));
 			}else if(results.get(i).getResultClass().equals(
 					ResultClass.IMAGE_SEARCH_RESULT)){
