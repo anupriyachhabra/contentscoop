@@ -35,11 +35,11 @@ public class ResultPanelPresenter extends BasePresenter<IResultPanelView, Conten
 
 		AsyncCallback<String> callback = new AsyncCallback<String>() {
 			public void onFailure(Throwable caught) {
-				Window.alert("Saving text on database failed");
+				Window.alert("failed to save text");
 			}
 
 			public void onSuccess(String result) {
-				Window.alert("Text has been saved in in-memory database");
+				Window.alert("saved text to file");
 			}
 		};
 		storeTextService.storeText(textToStore, callback);
