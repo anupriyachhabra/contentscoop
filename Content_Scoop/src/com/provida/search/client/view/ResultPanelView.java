@@ -49,6 +49,9 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 	
 	@Override
 	public void setResults(JsArray<? extends Result> results,int words) {
+		textRow = 0;
+		imageRow = 0 ;	
+		removehandlers();
 		for (int i = 0; i < results.length(); i++) {
 			if (results.get(i).getResultClass().equals(
 					ResultClass.WEB_SEARCH_RESULT)) {
@@ -59,7 +62,7 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 				if(words>0){
 					int p=0;
 					int spaceIdx=0;
-					while(p<words){
+					while(p<words && spaceIdx!=-1){
 						spaceIdx = content.indexOf(" ",spaceIdx+1);
 						p++;
 					}
@@ -115,17 +118,22 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
         }
     };
 	@Override
-	public void clearAll() {
-		for(HandlerRegistration handler:registrations){
-			handler.removeHandler();
-		}
-		registrations = new ArrayList<HandlerRegistration>();
-		
-		textRow = 0;
-		imageRow = 0 ;	
+	public void clearAll() {		
+		removehandlers();
+		textResults.removeAllRows();
+	    imageResults.removeAllRows();	
 		textResults.setWidth("100%");
 		textResults.getColumnFormatter().setWidth(0, "5%");
 		textResults.getColumnFormatter().setWidth(1, "75%");
 		textResults.getColumnFormatter().setWidth(2,"20%"); 
+		mainTab.selectTab(0);
+	}
+
+
+	private void removehandlers() {
+		for(HandlerRegistration handler:registrations){
+			handler.removeHandler();
+		}
+		registrations = new ArrayList<HandlerRegistration>();
 	}
 }

@@ -62,4 +62,9 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 	    });
         control.execute(term);
 }
+	@Override
+	public void clearResults() {
+	     eventBus.clearResults();
+		
+	}
 }

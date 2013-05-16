@@ -2,21 +2,18 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:HTMLPanel>
-	   <g:VerticalPanel styleName="search">
-		<g:HorizontalPanel>
-		<g:TextBox ui:field="term"></g:TextBox>
+	   <g:VerticalPanel styleName="search" spacing = "5" >
+		<g:HorizontalPanel spacing = "5">
+		<g:TextBox ui:field="term" width="600px"></g:TextBox>
 		<g:Button ui:field="searchButton">Search</g:Button>
+		<g:Button ui:field="clearButton">Clear</g:Button>
 		</g:HorizontalPanel>
-		<g:HorizontalPanel>
+		<g:HorizontalPanel spacing = "2">
 		<g:HTMLPanel>Image Type&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageType" name = "Image Type"></g:ListBox>
-		</g:HorizontalPanel>
-		<g:HorizontalPanel>
 		<g:HTMLPanel>Image Width&nbsp;&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="imageWidth" name = "Image Width"></g:TextBox>
-		</g:HorizontalPanel>
-		<g:HorizontalPanel>
 		<g:HTMLPanel>Image Height&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="imageHeight" name = "Image Height"></g:TextBox>
 		</g:HorizontalPanel>
-		<g:HorizontalPanel>
+		<g:HorizontalPanel spacing = "2">
 		<g:HTMLPanel>Number of words&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="numberOfWords"></g:TextBox>
 		</g:HorizontalPanel>
 	 </g:VerticalPanel>

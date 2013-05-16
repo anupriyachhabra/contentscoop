@@ -21,9 +21,11 @@ public class ResultPanelPresenter extends BasePresenter<IResultPanelView, Conten
 
 	
 	public void onSetResults(JsArray<? extends Result> results,int words){
-		view.clearAll();
 		view.setResults(results,words);
 		
+	}
+	public void onClearResults(){
+		view.clearAll();
 	}
 
 	@Override

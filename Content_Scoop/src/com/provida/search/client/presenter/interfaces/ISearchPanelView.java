@@ -8,6 +8,8 @@ public interface ISearchPanelView extends IsWidget {
 
 		void startSearch(String term,String imageType,String imageSize, int words);
 
+		void clearResults();
+
 	}
 }
 

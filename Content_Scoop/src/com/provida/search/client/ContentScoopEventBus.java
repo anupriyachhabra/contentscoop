@@ -18,4 +18,7 @@ public interface ContentScoopEventBus extends EventBus{
 
 	@Event(handlers = ResultPanelPresenter.class )
 	void setResults(JsArray<? extends Result> results,int words);
+
+	@Event(handlers = ResultPanelPresenter.class )
+	void clearResults();
 }

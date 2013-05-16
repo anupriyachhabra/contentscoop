@@ -27,7 +27,7 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 	TextBox term,numberOfWords,imageWidth,imageHeight;
 	
 	@UiField
-	Button searchButton;
+	Button searchButton,clearButton;
 	
 	@UiField
 	ListBox imageType;
@@ -59,5 +59,15 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 		presenter.startSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
 	}
 	
+	@UiHandler("clearButton")
+	public void onClearButton(ClickEvent e){
+		term.setText("");
+		numberOfWords.setText("");
+		imageWidth.setText("");
+		imageHeight.setText("");
+		imageType.setSelectedIndex(0);
+		presenter.clearResults();
+		
+	}
 
 }
