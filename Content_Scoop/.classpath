@@ -14,5 +14,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-search.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derby.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derbyclient.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jaxrs-api.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jersey-client-1.17.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jersey-core-1.17.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
