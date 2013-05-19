@@ -56,7 +56,7 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 		if(words== null || "".equals(words)){
 			words="0";
 		}
-		System.out.println("User searched for " +term.getValue()+"  "+imageSize+"  "+imageTypeString);
+		System.out.println("User searched for " +term.getValue()+"  "+imageSizeString+"  "+imageTypeString);
 		//presenter.startSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
 		presenter.startGoogleSearch(term.getValue(),imageTypeString,imageSizeString,Integer.parseInt(words));
 	}
