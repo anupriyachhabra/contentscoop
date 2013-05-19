@@ -22,6 +22,16 @@
     <servlet-class>com.provida.search.server.StoreTextServiceImpl</servlet-class>
   </servlet>
 
+    <servlet>
+    <servlet-name>searchServiceImpl</servlet-name>
+    <servlet-class>com.provida.search.server.GoogleCustomSearchServiceImpl</servlet-class>
+  </servlet>
+
+ <servlet-mapping>
+    <servlet-name>searchServiceImpl</servlet-name>
+    <url-pattern>/content_scoop/searchResults</url-pattern>
+  </servlet-mapping>
+  
  <servlet-mapping>
     <servlet-name>storeTextServiceImpl</servlet-name>
     <url-pattern>/content_scoop/saveText</url-pattern>
