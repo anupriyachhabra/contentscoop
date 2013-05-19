@@ -30,7 +30,7 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 	@Override
 	public SearchResult search(String term, String imageType,
 			String imageSize, int words,int startIndex) {
-		String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyDC3S4hwVZUUcoFnXlZHB1NDyoLJANhj18&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
+		String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyB0Mz6DEAV6qZ8vk-RAOvTiMDL7v7V36aI&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
 		SearchResult searchResult = new SearchResult();
 		String customImageUrlAdd ="";
 		if(imageType!=null && !("".equals(imageType) || "ALL".equalsIgnoreCase(imageType))){
