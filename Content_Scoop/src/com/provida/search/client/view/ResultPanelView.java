@@ -153,7 +153,6 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 	public void clearAll() {
 		textResults.setRowData(new ArrayList<WebResult>());
 		imageResults.setRowData(new ArrayList<ImageResult>());
-		provider.addDataDisplay(textResults);		
 	}
 	public String getTerm() {
 		return term;
