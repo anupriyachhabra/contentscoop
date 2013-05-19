@@ -39,6 +39,7 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 		imageType.addItem("gif");
 		imageType.addItem("bmp");
 		imageSize.addItem("ALL");
+		imageSize.addItem("icon");
 		imageSize.addItem("small");
 		imageSize.addItem("medium");
 		imageSize.addItem("large");

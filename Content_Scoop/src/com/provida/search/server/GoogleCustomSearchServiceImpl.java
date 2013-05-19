@@ -1,6 +1,8 @@
 package com.provida.search.server;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,20 +32,27 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 	@Override
 	public SearchResult search(String term, String imageType,
 			String imageSize, int words,int startIndex) {
-		String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyB0Mz6DEAV6qZ8vk-RAOvTiMDL7v7V36aI&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
 		SearchResult searchResult = new SearchResult();
-		String customImageUrlAdd ="";
-		if(imageType!=null && !("".equals(imageType) || "ALL".equalsIgnoreCase(imageType))){
-			customImageUrlAdd = "&fileType="+imageType;
-		}
-		if(imageSize!=null && !("".equals(imageSize) || "ALL".equalsIgnoreCase(imageSize))){
-			customImageUrlAdd = "&imgSize="+imageSize;
-		}
-		List<WebResult> webResult = getWebResult(url,words);
-		List<ImageResult> imageResult = getImageResult(url+"&searchType=image"+customImageUrlAdd);
+		if(StringUtils.isNotEmpty(term)){
+			try {
+				term = URLEncoder.encode(term, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+			   System.out.println("URL encoding failed");
+			}
+			String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyB0Mz6DEAV6qZ8vk-RAOvTiMDL7v7V36aI&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
+			String customImageUrlAdd ="";
+			if(imageType!=null && !("".equals(imageType) || "ALL".equalsIgnoreCase(imageType))){
+				customImageUrlAdd = "&fileType="+imageType;
+			}
+			if(imageSize!=null && !("".equals(imageSize) || "ALL".equalsIgnoreCase(imageSize))){
+				customImageUrlAdd = customImageUrlAdd+ "&imgSize="+imageSize;
+			}
+			List<WebResult> webResult = getWebResult(url,words);
+			List<ImageResult> imageResult = getImageResult(url+"&searchType=image"+customImageUrlAdd);
 
-		searchResult.setWebResult(webResult);
-		searchResult.setImageResult(imageResult);
+			searchResult.setWebResult(webResult);
+			searchResult.setImageResult(imageResult);
+}
 		return searchResult;
 	}
 
