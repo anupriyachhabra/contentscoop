@@ -1,8 +1,8 @@
 package com.provida.search.client.presenter;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
-import com.google.gwt.search.client.Result;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mvp4g.client.annotation.Presenter;
@@ -15,13 +15,15 @@ import com.provida.search.client.UploadImageServiceAsync;
 import com.provida.search.client.presenter.interfaces.IResultPanelView;
 import com.provida.search.client.presenter.interfaces.IResultPanelView.IResultPanelPresenter;
 import com.provida.search.client.view.ResultPanelView;
+import com.provida.search.shared.SearchResult;
 
 @Presenter( view = ResultPanelView.class )
 public class ResultPanelPresenter extends BasePresenter<IResultPanelView, ContentScoopEventBus> implements IResultPanelPresenter {
 
 	
-	public void onSetResults(JsArray<? extends Result> results,int words){
-		view.setResults(results,words);
+	public void onSetResults(SearchResult results,String term, String imageType,
+			String imageSize, int words){
+		view.setResults(results, term, imageType, imageSize, words);
 		
 	}
 	public void onClearResults(){
@@ -62,5 +64,9 @@ public class ResultPanelPresenter extends BasePresenter<IResultPanelView, Conten
 	    };
 	    imageUploadService.uploadImage(imageUrl, callback);
 	   
+	}
+	@Override
+	public void getMoreResults(final int start) {
+		
 	}
 }

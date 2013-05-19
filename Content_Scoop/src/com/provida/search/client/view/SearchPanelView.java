@@ -56,7 +56,8 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 			words="0";
 		}
 		System.out.println("User searched for " +term.getValue()+"  "+imageSize+"  "+imageTypeString);
-		presenter.startSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
+		//presenter.startSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
+		presenter.startGoogleSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
 	}
 	
 	@UiHandler("clearButton")

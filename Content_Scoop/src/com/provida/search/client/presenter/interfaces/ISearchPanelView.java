@@ -10,6 +10,8 @@ public interface ISearchPanelView extends IsWidget {
 
 		void clearResults();
 
+		void startGoogleSearch(String term,String imageType,String imageSize, int words);
+
 	}
 }
 

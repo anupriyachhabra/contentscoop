@@ -1,13 +1,14 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<g:HTMLPanel>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+	<g:HTMLPanel ui:field="resultPanel">
 		<g:TabPanel ui:field="mainTab" styleName="result">
-            <g:Tab text="Text" ui:field="Tab">
-               <g:FlexTable ui:field="textResults"></g:FlexTable> 
+            <g:Tab text="Text" ui:field="textTab">
+                    <c:CellTable ui:field="textResults"></c:CellTable>                
             </g:Tab>
              <g:Tab text="Images">
-               <g:FlexTable ui:field="imageResults"></g:FlexTable> 
+                    <c:CellTable ui:field="imageResults"></c:CellTable> 
             </g:Tab>
         </g:TabPanel>
 	</g:HTMLPanel>

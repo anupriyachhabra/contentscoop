@@ -1,21 +1,26 @@
 package com.provida.search.client.presenter;
 
+import java.util.List;
+
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
-import com.google.gwt.search.client.FileTypeValue;
 import com.google.gwt.search.client.ImageSearch;
-import com.google.gwt.search.client.ImageSizeValue;
 import com.google.gwt.search.client.Result;
 import com.google.gwt.search.client.ResultSetSize;
 import com.google.gwt.search.client.SearchControl;
 import com.google.gwt.search.client.SearchControlOptions;
 import com.google.gwt.search.client.SearchResultsHandler;
 import com.google.gwt.search.client.WebSearch;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.BasePresenter;
 import com.provida.search.client.ContentScoopEventBus;
+import com.provida.search.client.GoogleCustomSearchService;
+import com.provida.search.client.GoogleCustomSearchServiceAsync;
 import com.provida.search.client.presenter.interfaces.ISearchPanelView;
 import com.provida.search.client.presenter.interfaces.ISearchPanelView.ISearchPanelPresenter;
 import com.provida.search.client.view.SearchPanelView;
+import com.provida.search.shared.SearchResult;
 
 @Presenter( view = SearchPanelView.class )
 public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, ContentScoopEventBus> implements ISearchPanelPresenter {
@@ -57,7 +62,7 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 
 	    	public void onSearchResults(SearchResultsEvent event) {
 	    	    results = event.getResults();
-	    	    eventBus.setResults(results,words);
+	    	//    eventBus.setResults(results,words);
 	    	}
 	    });
         control.execute(term);
@@ -66,5 +71,26 @@ public class SearchPanelPresenter extends BasePresenter<ISearchPanelView, Conten
 	public void clearResults() {
 	     eventBus.clearResults();
 		
+	}
+	@Override
+	public void startGoogleSearch(final String term, final String imageType,
+			final String imageSize, final int words) {
+		GoogleCustomSearchServiceAsync searchService = GWT.create(GoogleCustomSearchService.class);
+		AsyncCallback<SearchResult> callback = new AsyncCallback<SearchResult>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(SearchResult result) {
+				eventBus.setResults(result,term,imageType,imageSize,words);
+				
+			}
+			
+		};
+		searchService.search(term,imageType,imageSize,words,1,callback);
 	}
 }
