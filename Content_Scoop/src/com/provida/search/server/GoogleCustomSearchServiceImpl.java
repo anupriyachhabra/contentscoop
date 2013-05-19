@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -62,7 +63,7 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 		org.json.JSONObject json=null;
 		try{
 			json = new JSONObject(output);
-			org.json.JSONArray itemsArray=json.getJSONArray("items");
+			JSONArray itemsArray=json.getJSONArray("items");
 			System.out.println("Curr Imagses length "+itemsArray.length());
 			for(int i=0;i<itemsArray.length();i++)
 			{
