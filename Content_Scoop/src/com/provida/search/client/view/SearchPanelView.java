@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.util.tools.shared.StringUtils;
 import com.google.inject.Singleton;
 import com.provida.search.client.presenter.interfaces.ISearchPanelView;
 import com.provida.search.client.presenter.interfaces.ISearchPanelView.ISearchPanelPresenter;
@@ -35,10 +34,10 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 	public SearchPanelView() {
 		initWidget(uiBinder.createAndBindUi( this ) );
 		imageType.addItem("ALL");
-		imageType.addItem("JPG");
-		imageType.addItem("PNG");
-		imageType.addItem("GIF");
-		imageType.addItem("BMP");
+		imageType.addItem("jpg");
+		imageType.addItem("png");
+		imageType.addItem("gif");
+		imageType.addItem("bmp");
 		imageSize.addItem("ALL");
 		imageSize.addItem("small");
 		imageSize.addItem("medium");

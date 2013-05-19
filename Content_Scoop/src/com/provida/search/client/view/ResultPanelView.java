@@ -48,9 +48,6 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 	TabPanel mainTab;
 	
 	AsyncDataProvider<WebResult> provider =null;
-	
-	int textRow = 0;
-	int imageRow = 0;
 	private String term;
 	private String imageType;
 	private String imageSize;
@@ -145,14 +142,18 @@ public class ResultPanelView extends ReverseCompositeView<IResultPanelPresenter>
 	@Override
 	public void setResults(SearchResult result,String term,String imageType,String imageSize,int words) {
 		setTerm(term);
+		setImageType(imageType);
+		setImageSize(imageSize);
+		setWords(words);
 		textResults.setRowData(result.getWebResult());
 		imageResults.setRowData(result.getImageResult());
 		textPager.setDisplay(textResults);
 	}		
 	@Override
 	public void clearAll() {
-		// TODO Auto-generated method stub
-		
+		textResults.setRowData(new ArrayList<WebResult>());
+		imageResults.setRowData(new ArrayList<ImageResult>());
+		provider.addDataDisplay(textResults);		
 	}
 	public String getTerm() {
 		return term;

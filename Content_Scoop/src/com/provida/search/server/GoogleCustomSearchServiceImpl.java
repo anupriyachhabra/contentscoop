@@ -1,9 +1,14 @@
 package com.provida.search.server;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.provida.search.client.GoogleCustomSearchService;
@@ -16,13 +21,25 @@ import com.sun.jersey.api.client.WebResource;
 
 public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implements GoogleCustomSearchService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public SearchResult search(String term, String imageType,
 			String imageSize, int words,int startIndex) {
 		String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyDC3S4hwVZUUcoFnXlZHB1NDyoLJANhj18&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
 		SearchResult searchResult = new SearchResult();
-		List<WebResult> webResult = getWebResult(url);
-		List<ImageResult> imageResult = getImageResult(url+"&searchType=image");
+		String customImageUrlAdd ="";
+		if(imageType!=null && !("".equals(imageType) || "ALL".equalsIgnoreCase(imageType))){
+			customImageUrlAdd = "&fileType="+imageType;
+		}
+		if(imageSize!=null && !("".equals(imageSize) || "ALL".equalsIgnoreCase(imageSize))){
+			customImageUrlAdd = "&imgSize="+imageSize;
+		}
+		List<WebResult> webResult = getWebResult(url,words);
+		List<ImageResult> imageResult = getImageResult(url+"&searchType=image"+customImageUrlAdd);
 
 		searchResult.setWebResult(webResult);
 		searchResult.setImageResult(imageResult);
@@ -61,7 +78,7 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 		return imageResults;
 	}
 
-	private List<WebResult> getWebResult(String url) {
+	private List<WebResult> getWebResult(String url,int words) {
 		List<WebResult> results = new ArrayList<WebResult>();
 		Client client = Client.create();
 		WebResource webResource = client.resource(url);
@@ -77,15 +94,17 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 		org.json.JSONObject json=null;
 		try{
 			json = new JSONObject(output);
-			org.json.JSONObject queryArray=json.getJSONObject("queries");
 			org.json.JSONArray itemsArray=json.getJSONArray("items");
 			System.out.println("Curr length "+itemsArray.length());
 			for(int i=0;i<itemsArray.length();i++)
 			{
 				WebResult result = new WebResult();
 				JSONObject newJSONObj=itemsArray.getJSONObject(i);
-				result.setSnippet(newJSONObj.getString("snippet"));
-
+				String text = getText(newJSONObj.getString("link"),words);
+				if(text!=null &&  words!=0)
+					result.setSnippet(text);
+				else
+					result.setSnippet(newJSONObj.getString("snippet"));
 				results.add(result);
 			}
 		}catch(Exception exe){
@@ -94,5 +113,18 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 		client.destroy();
 		return results;
 	}
-
+    private String getText(String link, int words){
+    	Document doc = null;
+		try {
+			doc = Jsoup.connect(link).get();
+		} catch (IOException e) {
+			return null;
+		}
+        Element body = doc.body();
+        String text = Jsoup.parse(body.html()).text();
+        int index = StringUtils.ordinalIndexOf(text, " ", words);
+        if(index!=0 || index!=-1)
+        	text = text.substring(0, index+1);
+        return text;
+    }
 }
