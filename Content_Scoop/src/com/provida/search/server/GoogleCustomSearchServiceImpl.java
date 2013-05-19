@@ -3,7 +3,6 @@ package com.provida.search.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -55,7 +54,7 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 				result.setUrl(newJSONObj.getString("link"));
 				imageResults.add(result);
 			}
-		}catch(JSONException exe){
+		}catch(Exception exe){
 			exe.printStackTrace();
 		}
 		client.destroy();
@@ -89,7 +88,7 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 
 				results.add(result);
 			}
-		}catch(JSONException exe){
+		}catch(Exception exe){
 			exe.printStackTrace();
 		}
 		client.destroy();

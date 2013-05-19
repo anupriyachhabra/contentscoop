@@ -24,13 +24,13 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 	}
 
 	@UiField
-	TextBox term,numberOfWords,imageWidth,imageHeight;
+	TextBox term,numberOfWords;
 	
 	@UiField
 	Button searchButton,clearButton;
 	
 	@UiField
-	ListBox imageType;
+	ListBox imageType,imageSize;
 
 	public SearchPanelView() {
 		initWidget(uiBinder.createAndBindUi( this ) );
@@ -39,34 +39,35 @@ public class SearchPanelView extends ReverseCompositeView<ISearchPanelPresenter>
 		imageType.addItem("PNG");
 		imageType.addItem("GIF");
 		imageType.addItem("BMP");
-		
+		imageSize.addItem("ALL");
+		imageSize.addItem("small");
+		imageSize.addItem("medium");
+		imageSize.addItem("large");
+		imageSize.addItem("xlarge");
+		imageSize.addItem("xxlarge");
+		imageSize.addItem("huge");
+
 	}	
 	
 	@UiHandler("searchButton")
 	public void onClickSearchButton(ClickEvent e){
 		String imageTypeString = imageType.getValue(imageType.getSelectedIndex());
-		String imageSize = null;
-		String width = imageWidth.getValue();
-		String height = imageHeight.getValue();
-		if(!"".equals(width) && !"".equals(height)){
-			imageSize = width+"x"+height;
-		}
+		String imageSizeString = imageSize.getValue(imageSize.getSelectedIndex());;
 		String words = numberOfWords.getValue();
 		if(words== null || "".equals(words)){
 			words="0";
 		}
 		System.out.println("User searched for " +term.getValue()+"  "+imageSize+"  "+imageTypeString);
 		//presenter.startSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
-		presenter.startGoogleSearch(term.getValue(),imageTypeString,imageSize,Integer.parseInt(words));
+		presenter.startGoogleSearch(term.getValue(),imageTypeString,imageSizeString,Integer.parseInt(words));
 	}
 	
 	@UiHandler("clearButton")
 	public void onClearButton(ClickEvent e){
 		term.setText("");
 		numberOfWords.setText("");
-		imageWidth.setText("");
-		imageHeight.setText("");
 		imageType.setSelectedIndex(0);
+		imageSize.setSelectedIndex(0);
 		presenter.clearResults();
 		
 	}

@@ -4,12 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.sun.jersey.api.client.Client;
@@ -18,7 +14,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class GoogleCustomSearch {
 
-	public static void main(String args[]) throws JSONException{
+	public static void main(String args[]) throws Exception{
 
 		
 			Client client = Client.create();

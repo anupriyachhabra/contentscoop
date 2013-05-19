@@ -10,8 +10,7 @@
 		</g:HorizontalPanel>
 		<g:HorizontalPanel spacing = "2">
 		<g:HTMLPanel>Image Type&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageType" name = "Image Type"></g:ListBox>
-		<g:HTMLPanel>Image Width&nbsp;&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="imageWidth" name = "Image Width"></g:TextBox>
-		<g:HTMLPanel>Image Height&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="imageHeight" name = "Image Height"></g:TextBox>
+		<g:HTMLPanel>Image Size&nbsp;&nbsp;&nbsp;</g:HTMLPanel><g:ListBox ui:field="imageSize" name = "Image Size"></g:ListBox>
 		</g:HorizontalPanel>
 		<g:HorizontalPanel spacing = "2">
 		<g:HTMLPanel>Number of words&nbsp;&nbsp;</g:HTMLPanel><g:TextBox ui:field="numberOfWords"></g:TextBox>
