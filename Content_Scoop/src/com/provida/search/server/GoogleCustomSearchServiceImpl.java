@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -28,18 +29,33 @@ public class GoogleCustomSearchServiceImpl extends RemoteServiceServlet implemen
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static String key = "";
+	private static String cx = "";
+	static{
+		Properties prop = new Properties();
 
+		try {
+			System.out.println("Loading properties");
+			prop.load(GoogleCustomSearchServiceImpl.class.getClassLoader().getResourceAsStream("google-api.properties"));
+			key = prop.getProperty("key");
+			cx = prop.getProperty("cx");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 	@Override
 	public SearchResult search(String term, String imageType,
 			String imageSize, int words,int startIndex) {
 		SearchResult searchResult = new SearchResult();
+		
 		if(StringUtils.isNotEmpty(term)){
 			try {
 				term = URLEncoder.encode(term, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 			   System.out.println("URL encoding failed");
 			}
-			String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyB0Mz6DEAV6qZ8vk-RAOvTiMDL7v7V36aI&cx=014881207863242567761:e0f9pxx2z4k&q="+term+"&alt=json&start="+startIndex;
+			String url = "https://www.googleapis.com/customsearch/v1?key="+key+"&cx="+cx+"&q="+term+"&alt=json&start="+startIndex;
 			String customImageUrlAdd ="";
 			if(imageType!=null && !("".equals(imageType) || "ALL".equalsIgnoreCase(imageType))){
 				customImageUrlAdd = "&fileType="+imageType;
